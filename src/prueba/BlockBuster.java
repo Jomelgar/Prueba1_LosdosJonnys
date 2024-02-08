@@ -26,15 +26,15 @@ public class BlockBuster {
         return null;
     }
 
-    public void agregarItem(int codigo, String nombre, String tipoItem) {
+    public void agregarItem(int codigo, String nombre, String tipoItem, String dato) {
        
         if (buscarItem(codigo, tipoItem) == null) {
             
             BlockBusterItem newItem = null;
             if (tipoItem.equals("MOVIE")) {
-                newItem = new MovieItem(codigo, nombre, Double.parseDouble(tipoItem));
+                newItem = new MovieItem(codigo, nombre, Double.parseDouble(dato));
             } else if (tipoItem.equals("GAME")) {
-                newItem = new VideoGameItem(codigo, nombre, tipoItem);
+                newItem = new VideoGameItem(codigo, nombre, dato);
             }
            
             if (newItem != null) {
@@ -67,7 +67,7 @@ public class BlockBuster {
             if(items.get(pos) instanceof MovieItem){
                 ((MovieItem) items.get(pos)).evaluarEstado();
             }
-            auditarMovieEstados();
+            auditarMovieEstados(pos + 1);
         }
     }
 }
